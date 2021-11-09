@@ -8,3 +8,7 @@
 .visualization__algorithms::-webkit-scrollbar{
     display:none;
 }
+.tablemy{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
