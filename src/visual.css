@@ -1,0 +1,10 @@
+.visualization__algorithms{
+    display:flex;
+    flex-direction:column;
+    flex:0.65;
+    overflow-y:scroll;
+}
+
+.visualization__algorithms::-webkit-scrollbar{
+    display:none;
+}
