@@ -77,6 +77,7 @@ import {fifo,lru,opr} from './page'
 //     return [pg,ms];
 
 // }
+
 function convert(refstr){
     var arr=refstr.split(" ");
     var k=[];
@@ -141,7 +142,7 @@ function Visualization({frames,refstr,alggo}) {
             <li>Frames are : {(frames.length >0)?frames:"nothing to show here"} <span class="extra"> These are the number of frames that are provided by the user. User can change it's value to get variation in results!</span> <br/></li>
             <li>Reference String: {(refstr.length > 0)?refstr:"nothing to show here"} <span class="extra"> Another attribute provided by the user. Change the reference string to get the results for different test cases.</span> <br/></li>
             <li>Algorithm : {(alggo.length >0)?alggo:"nothing to show here"} <span class="extra"> It shows, which algorithm is currently in use in the backend!</span> <br/></li>
-            <li>No. of Page Faults : {miss} <span class="extra"> A page fault occurs when a program attempts to access a block of memory that is not stored in the physical memory, or RAM. The fault notifies the operating system that it must locate the data in virtual memory, then transfer it from the storage device, such as an HDD or SSD, to the system RAM.</span> <br/></li>
+            <li>No. of Page Faults : {(frames.length >0)?miss:"nothing to show here"} <span class="extra"> A page fault occurs when a program attempts to access a block of memory that is not stored in the physical memory, or RAM. The fault notifies the operating system that it must locate the data in virtual memory, then transfer it from the storage device, such as an HDD or SSD, to the system RAM.</span> <br/></li>
             <li>Page Faults percentage : {per(miss,arr2.length)}% <span class="extra"> It shows the percentage of total pages which resulted in page faults or page misses.</span> <br/></li>
             <li>Hit rate percentage : {100-per(miss,arr2.length)}% <span class="extra"> It is the percentage of total pages which are in the memory when we access them i,e, the percentage of HIT pages.</span> <br/></li>
             {/* </div> */}
