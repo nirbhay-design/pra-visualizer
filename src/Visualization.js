@@ -98,7 +98,7 @@ function Visualization({frames,refstr,alggo}) {
     if(alggo==="FIFO"){
         fun=fifo;
     }
-    else if(alggo==="LRU"){
+    else if(alggo==="LRU" ){
         fun=lru;
     }
     else if(alggo==="OPR"){
