@@ -113,8 +113,8 @@ function Visualization({frames,refstr,alggo}) {
     var miss=s1[2];
     for(let i=0;i<arr1.length;i++){
         if(arr2[i]===1)
-        arr1[i].push("HIT");
-        else arr1[i].push("MISS");
+        arr1[i].push("✅");
+        else arr1[i].push("❌");
 
     }
     
