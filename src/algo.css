@@ -41,20 +41,15 @@
     font-size: 18px;
     font-family:"Ubuntu Mono";
     background:none;
-    border:1px solid blue;
+    border:1px solid cadetblue;
     /* border-radius:10px; */
     /* border-width: 2px; */
     background-color:#FFFFFF;
-    color:#4285F4;
+    color: #e36683;
     transition:color 1s,background-color 1s; 
 }
 
 .but:hover{
-    background-color:#4285F4;
+    background-color:#e36683;
     color:#FFFFFF;
 }
-/* @media only screen and (max-width: 600px) {
-    .algorithms__choice {
-        flex:0.96
-    }
-  } */

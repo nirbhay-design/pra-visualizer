@@ -2,6 +2,8 @@
   text-align: center;
 }
 
+
+
 .my__div{
   /* background-image:url("https://images.unsplash.com/photo-1591951425600-d09958978584?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGFnZXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"); */
   /* background-image:url("https://t4.ftcdn.net/jpg/04/13/42/61/360_F_413426103_zBEu5NRrZHkiNcgiHeJAqcOQsmsdEMy3.jpg"); */
@@ -16,14 +18,3 @@
   margin:2vw;
   padding:3px;
 }
-
-/* .div1{
-  border: 2px solid black;
-  border-radius:4px 0px 0px 4px;
-  margin:3vw;
-}
-.div2{
-  border: 2px solid black;
-  border-radius:0px 4px 4px 0px;
-  margin:3vw;
-} */

@@ -5,10 +5,36 @@
     overflow-y:scroll;
 }
 
+.visualization__algorithms li{
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 20px;
+    color:cadetblue;
+}
+
+.visualization__algorithms li:hover{
+    color: #e36683;
+}
+
+.extra { 
+    display: none;
+}
+
+.visualization__algorithms li:hover .extra {
+    display: inline-block;
+}
+
 .visualization__algorithms::-webkit-scrollbar{
     display:none;
 }
-.tablemy{
+
+.tablemy th, td{
     border: 1px solid black;
     border-collapse: collapse;
 }
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+tr:nth-child(even) {background-color:cadetblue;}
