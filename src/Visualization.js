@@ -152,19 +152,19 @@ function Visualization({frames,refstr,alggo,flagg}) {
                     })}
                 </tr>
                 {arr1.map((items,index)=>{
-                    return <tr className="tablemyy"> {items.map((item,ind)=>{
+                    return <tr className="tablemyy" style={{"animation-delay":index+"s"}}> {items.map((item,ind)=>{
                         if(ind === items.length-1){
                             if (item === "✓"){
-                                return <td className="tablemy__img1">{item}</td>
+                                return <td className="tablemy__img1" >{item}</td>
                                 
                             } else {
-                                return <td className="tablemy__img2">{item}</td>
+                                return <td className="tablemy__img2" >{item}</td>
                             }
                         } else{
                             if (item === -1){
-                                return <td className="tablemyy">Empty_Frame</td>
+                                return <td className="tablemyy" >Empty_Frame</td>
                             } else {
-                                return <td className="tablemyy">{item}</td>
+                                return <td className="tablemyy" >{item}</td>
                             }
                         }
                     })}</tr>
@@ -177,7 +177,7 @@ function Visualization({frames,refstr,alggo,flagg}) {
             <br/>
 
             {/* <div className="infoText"> */}
-            <div className="table__summary">
+            <div className="table__summary" style={{"animation-duration":arr1.length+2+"s"}}>
                 <h2> Summary Reports </h2>
                 <div className="list__div">
 
