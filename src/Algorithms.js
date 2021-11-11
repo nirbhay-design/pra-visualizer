@@ -2,7 +2,7 @@ import React from 'react'
 import './algo.css'
 import {useState} from 'react'
 
-function Algorithms({Setmyframes,Setmyrefstr,Setmyalgo}) {
+function Algorithms({Setmyframes,Setmyrefstr,Setmyalgo,myflag,setflag}) {
     const [frames,Setframes] = useState("");
     const [refstr,Setrefstr] = useState("");
     const visualizebutton = (e,name_algo)=>{
@@ -13,8 +13,18 @@ function Algorithms({Setmyframes,Setmyrefstr,Setmyalgo}) {
         console.log(name_algo);
         console.log(refstr); 
         console.log(frames);
+        if(frames !== "" && refstr !== ""){
+            setflag(myflag+1);
+        }
         // Setrefstr("");
         // Setframes("");
+    }
+    const Reset = (e)=>{
+        e.preventDefault();
+        setflag(0);
+        Setframes("");
+        Setrefstr("");
+
     }
     return (
         <div className="algorithms__choice">
@@ -30,6 +40,7 @@ function Algorithms({Setmyframes,Setmyrefstr,Setmyalgo}) {
                 <button className="but" onClick={(e)=>{visualizebutton(e,"SCA")}}>Second Chance Algorithm</button>
                 <button className="but" onClick={(e)=>{visualizebutton(e,"Clk")}}>Clock</button>
                 <button className="but" onClick={(e)=>{visualizebutton(e,"Wait")}}>Waiting</button>
+                <button className="but1" onClick={(e)=>{Reset(e)}}>Reset</button>
             </div>
             <div className="description__algorithms">
 

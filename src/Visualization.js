@@ -93,7 +93,14 @@ function per(x,y){
     return a*100;
 }
 
-function Visualization({frames,refstr,alggo}) {
+function Visualization({frames,refstr,alggo,flagg}) {
+    const algodesc = {
+        "fifo":"This is the simplest page replacement algorithm. In this algorithm, the operating system keeps track of all pages in the memory in a queue, the oldest page is in the front of the queue. When a page needs to be replaced page in the front of the queue is selected for removal. ",
+        "lru":"In this algorithm page will be replaced which is least recently used. ",
+        "opr":"In this algorithm, pages are replaced which would not be used for the longest duration of time in the future. ",
+        "nru":"This algorithm removes a page at random from the lowest numbered non-empty class. Implicit in this algorithm is that it is better to remove a modified page that has not been referenced in atleast one clock tick than a clean page that is in heavy use.",
+        "sca":"In the Second Chance page replacement policy, the candidate pages for removal are considered in a round robin matter, and a page that has been accessed between consecutive considerations will not be replaced.",
+    } 
     var fun;
     if(alggo==="FIFO"){
         fun=fifo;
@@ -114,8 +121,8 @@ function Visualization({frames,refstr,alggo}) {
     var miss=s1[2];
     for(let i=0;i<arr1.length;i++){
         if(arr2[i]===1)
-        arr1[i].push("✅");
-        else arr1[i].push("❌");
+        arr1[i].push("✓");
+        else arr1[i].push("✗");
 
     }
     
@@ -123,31 +130,66 @@ function Visualization({frames,refstr,alggo}) {
     //var m=Number(frames);
     return (
         <div className="visualization__algorithms">
-            <center><h1> Visualizer </h1></center>
+            {(flagg>=1)?<><center><h1> Visualization </h1></center>
             <br/>
             <table className="tablemy">
-                {arr1.map((items,index)=>{
-                    return <tr className="tablemy"> {items.map((item,ind)=>{
-                        return <td className="tablemy">{item}</td>
-                        })}</tr>
+                <tr className="tablemyyy"> 
+                    {arr1[0].map((item,ind)=>{
+                        if(ind === arr1[0].length-1){
+                            return <td className="firsttd">{"Hit/Miss"}</td>
+                            
+                        }else {
+                            return <td className="firsttd">{"frame"+ind}</td>
 
+                        }
+                    })}
+                </tr>
+                {arr1.map((items,index)=>{
+                    return <tr className="tablemyy"> {items.map((item,ind)=>{
+                        if(ind === items.length-1){
+                            if (item === "✓"){
+                                return <td className="tablemy__img1">{item}</td>
+                                
+                            } else {
+                                return <td className="tablemy__img2">{item}</td>
+                            }
+                        } else{
+                            if (item === -1){
+                                return <td className="tablemyy">Empty_Frame</td>
+                            } else {
+                                return <td className="tablemyy">{item}</td>
+                            }
+                        }
+                    })}</tr>
+                    
                 })}
 
                 
             </table>
+        
             <br/>
 
             {/* <div className="infoText"> */}
-            <h2> Info </h2>
-            <li>Frames are : {(frames.length >0)?frames:"nothing to show here"} <span class="extra"> These are the number of frames that are provided by the user. User can change it's value to get variation in results!</span> <br/></li>
-            <li>Reference String: {(refstr.length > 0)?refstr:"nothing to show here"} <span class="extra"> Another attribute provided by the user. Change the reference string to get the results for different test cases.</span> <br/></li>
-            <li>Algorithm : {(alggo.length >0)?alggo:"nothing to show here"} <span class="extra"> It shows, which algorithm is currently in use in the backend!</span> <br/></li>
-            <li>No. of Page Faults : {(frames.length >0)?miss:"nothing to show here"} <span class="extra"> A page fault occurs when a program attempts to access a block of memory that is not stored in the physical memory, or RAM. The fault notifies the operating system that it must locate the data in virtual memory, then transfer it from the storage device, such as an HDD or SSD, to the system RAM.</span> <br/></li>
-            {/* <li>Page Faults percentage : {per(miss,arr2.length)}% <span class="extra"> It shows the percentage of total pages which resulted in page faults or page misses.</span> <br/></li>
-            <li>Hit rate percentage : {100-per(miss,arr2.length)}% <span class="extra"> It is the percentage of total pages which are in the memory when we access them i,e, the percentage of HIT pages.</span> <br/></li> */}
-            <li>Page Faults percentage : {(alggo.length >0)?per(miss,arr2.length) + "%":"NULL"} <span class="extra"> It shows the percentage of total pages which resulted in page faults or page misses.</span> <br/></li>
-            <li>Hit rate percentage : {(alggo.length >0)?100-per(miss,arr2.length)+ "%":"NULL"} <span class="extra"> It is the percentage of total pages which are in the memory when we access them i,e, the percentage of HIT pages.</span> <br/></li>
-            
+            <div className="table__summary">
+                <h2> Summary Reports </h2>
+                <div className="list__div">
+
+                    <li>Frames are - {(frames.length >0)?frames:"nothing to show here"}</li>
+                    <li>Reference String - {(refstr.length > 0)?refstr:"nothing to show here"}</li>
+                    <li>Algorithm - {(alggo.length >0)?alggo:"nothing to show here"} </li>
+                    <li>No. of Page Faults - {(frames.length >0)?miss:"nothing to show here"} </li>
+                    {/* <li>Page Faults percentage : {per(miss,arr2.length)}% <span class="extra"> It shows the percentage of total pages which resulted in page faults or page misses.</span> <br/></li>
+                    <li>Hit rate percentage : {100-per(miss,arr2.length)}% <span class="extra"> It is the percentage of total pages which are in the memory when we access them i,e, the percentage of HIT pages.</span> <br/></li> */}
+                    <li>Page Faults percentage - {(alggo.length >0)?per(miss,arr2.length) + "%":"NULL"} </li>
+                    <li>Hit rate percentage - {(alggo.length >0)?100-per(miss,arr2.length)+ "%":"NULL"} </li>
+                </div>
+            </div>
+            </>:<div className="initial__heading"><h3>Hey! Let's Visualize Some Page Replacement Algorithms! 
+                </h3>
+                <h3>Choose Your Favourite Algorithm For Visualization 😊</h3>
+
+                <h4>Want to read more about it ? <a href="https://www.geeksforgeeks.org/page-replacement-algorithms-in-operating-systems/">Visit</a> </h4>
+                </div>}
             {/* </div> */}
            
         </div>

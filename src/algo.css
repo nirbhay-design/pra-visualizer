@@ -41,15 +41,34 @@
     font-size: 18px;
     font-family:"Ubuntu Mono";
     background:none;
-    border:1px solid cadetblue;
+    border:1px solid blue;
     /* border-radius:10px; */
     /* border-width: 2px; */
     background-color:#FFFFFF;
-    color: #e36683;
+    color: #4285F4;
     transition:color 1s,background-color 1s; 
 }
 
 .but:hover{
-    background-color:#e36683;
+    background-color:#4285F4;
+    color:#FFFFFF;
+}
+
+.but1{
+    padding:8px 0px 8px 0px;
+    margin:15px 3vw 15px 3vw;
+    font-size: 18px;
+    font-family:"Ubuntu Mono";
+    background:none;
+    border:1px solid blue;
+    /* border-radius:10px; */
+    /* border-width: 2px; */
+    background-color:#4285F4;
+    color: #FFFFFF;
+    transition:color 1s,background-color 1s;
+}
+
+.but1:hover{
+    background-color:#0b46a3;
     color:#FFFFFF;
 }
