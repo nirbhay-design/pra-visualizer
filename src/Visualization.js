@@ -1,7 +1,7 @@
 import React from 'react'
 import './visual.css'
 //impprt {useTable} from 'reac'
-import {fifo,lru,opr} from './page'
+import {fifo,lru,opr,nfu} from './page'
 
 
 // function fifo(f,rs) {
@@ -79,10 +79,13 @@ import {fifo,lru,opr} from './page'
 // }
 
 function convert(refstr){
+    refstr=refstr.trim();
     var arr=refstr.split(" ");
     var k=[];
     for(let i=0;i<arr.length;i++){
+        if(arr[i]!=="" && arr[i]!==" "){
         k.push(Number(arr[i]));
+        }
     }
 
     return k;
@@ -90,7 +93,8 @@ function convert(refstr){
 }
 function per(x,y){
     var a=(x*1.0)/y;
-    return a*100;
+    var b= a*100;
+    return Math.round(b*100)/100;
 }
 
 function Visualization({frames,refstr,alggo,flagg}) {
@@ -110,6 +114,9 @@ function Visualization({frames,refstr,alggo,flagg}) {
     }
     else if(alggo==="OPR"){
         fun=opr;
+    }
+    else if(alggo==="NRU"){
+        fun=nfu;
     }
     else{
         fun=fifo;

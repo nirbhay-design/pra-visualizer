@@ -259,7 +259,105 @@ const INT_MAX=100000;
     }
     return [pg,ms,miss];
 }
-export {fifo,lru,opr};
+function nfu(f,rs){
+    //console.log(INT_MIN);
+        var pg=[];
+        var ms=[];
+        var v=[];
+        for(let i=0;i<f;i++){
+            v.push([]);
+            for(let j=0;j<rs.length;j++){
+                v[i].push(-1);
+    
+            }
+        }
+        var ref=[];
+        var mod=[];
+        for(let j=0;j<f;j++){
+            ref.push(0);
+            mod.push(0);
+        }
+        let miss =0;
+        let cycle = 0;
+        for (let i =0;i<rs.length;i++) {
+            var cur=[];
+            let page = rs[i];
+            let find=false;
+            let emp = false;
+            if (i !== 0) {
+                for (let j =0;j<f;j++) {
+                    v[j][i] = v[j][i-1];
+                }
+            }
+            let pos=-1;
+            for (let j =0;j<f;j++) {
+                if (v[j][i] !==-1 && v[j][i] === page) {
+                    pos=j;
+                    find =true;
+                    break;
+                } else if (v[j][i] === -1){
+                    emp = true;
+                }
+            }
+            if (find!==true) {
+                ms.push(0);
+                //console.log("0 ");
+                //process.stdout.write("0 ");
+                miss=miss+1;
+                if (emp===true) {
+                    //console.log("cycle" +cycle);
+                    v[cycle][i] = page;
+                    //mod[cycle]=1;
+                    ref[cycle]=1;
+
+                    cycle = (cycle + 1)%f;
+                    
+                } else {
+                    let imd = -1;
+                    var v1=[];
+                    var v2=[];
+                    //var v3=[];
+                    for(let j=0;j<f;j++){
+                        if(ref[i]===1 && mod[i]===0){
+                            v1.push(i);
+                        }
+                        else{
+                            v2.push(i);
+                        }
+                    }
+                    if(v1.length>0){
+                        var n=v1.length;
+                        let rn=Math.floor(Math.random()*n);
+                        imd=rn;
+                    }
+                    else{
+                        var n1=v2.length;
+                        let rn1=Math.floor(Math.random()*n1);
+                        imd=rn1;
+
+                    }
+                 
+                    if(imd!==-1)v[imd][i] = page;
+                }
+                //replace page
+            }
+            else {
+                ms.push(1);
+                mod[pos]=1;
+                
+                //console.log("1 ");
+                //process.stdout.write("1 ");
+            } 
+            for(let j=0;j<f;j++){
+                cur.push(v[j][i]);
+            }
+            pg.push(cur);
+        }
+        return [pg,ms,miss];
+
+
+}
+export {fifo,lru,opr,nfu};
 // let g=lru(2,[1,2,2,4,5,5,3,2,1]);
 // console.log(g);
 // g=fifo(2,[1,2,2,4,5,5,3,2,1]);
