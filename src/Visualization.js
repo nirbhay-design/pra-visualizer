@@ -1,7 +1,7 @@
 import React from 'react'
 import './visual.css'
 //impprt {useTable} from 'reac'
-import {fifo,lru,opr,nfu} from './page'
+import {fifo,lru,opr,nru,random,lfu,mfu} from './page'
 
 
 // function fifo(f,rs) {
@@ -87,7 +87,6 @@ function convert(refstr){
         k.push(Number(arr[i]));
         }
     }
-
     return k;
 
 }
@@ -100,15 +99,15 @@ function per(x,y){
 function Visualization({frames,refstr,alggo,flagg}) {
     const algodesc = {
         FIFO:"This is the simplest page replacement algorithm. In this algorithm, the operating system keeps track of all pages in the memory in a queue, the oldest page is in the front of the queue. When a page needs to be replaced page in the front of the queue is selected for removal. ",
-        LRU:"In this algorithm page will be replaced which is least recently used. ",
+        LRU:"In this algorithm page will be replaced which is least recently used before the current page. ",
         OPR:"In this algorithm, pages are replaced which would not be used for the longest duration of time in the future. ",
         NRU:"This algorithm removes a page at random from the lowest numbered non-empty class. Implicit in this algorithm is that it is better to remove a modified page that has not been referenced in atleast one clock tick than a clean page that is in heavy use.",
-        NFU:"this is not frequently used algorithm",
+        // NFU:"this is not frequently used algorithm",
         SCA:"In the Second Chance page replacement policy, the candidate pages for removal are considered in a round robin matter, and a page that has been accessed between consecutive considerations will not be replaced.",
         Clk:"it uses clk",
-        RAN:"it selects victim page randomly",
-        LFU:"it select victim page which is least frequently used",
-        MFU:"it select victim page which is most frequently used",
+        RAN:"it selects victim page randomly and replaces the page from that frame",
+        LFU:"it select victim page which is least frequently used which means it keeps track of the frequency of pages so far and on page fault it replaces the page having least frequency so far",
+        MFU:"it select victim page which is most frequently used which means it keeps track of the frequency of pages so far and on page fault it replaces the page having maximum frequency so far",
         Wait:"this is working set algorithm",
     } 
     var fun;
@@ -122,16 +121,23 @@ function Visualization({frames,refstr,alggo,flagg}) {
         fun=opr;
     }
     else if(alggo==="NRU"){
-        fun=nfu;
+        fun=nru;
     }
-    else{
-        fun=fifo;
+    else if (alggo === "RAN"){
+        fun=random;
+    } else if (alggo === "LFU"){
+        fun = lfu;
+    } else if(alggo === "MFU") {
+        fun = mfu;
+    } else {
+        fun = fifo;
     }
     const k=convert(refstr);
     const s1=fun(frames,k);
     var arr1=s1[0];
     var arr2=s1[1];
-    var miss=s1[2];
+    var arr3 = s1[2];
+    var miss=s1[3];
     for(let i=0;i<arr1.length;i++){
         if(arr2[i]===1)
         arr1[i].push("✓");
@@ -174,7 +180,15 @@ function Visualization({frames,refstr,alggo,flagg}) {
                             if (item === -1){
                                 return <td className="tablemyy" >Empty_Frame</td>
                             } else {
-                                return <td className="tablemyy" >{item}</td>
+                                if (arr3[index] === -1)
+                                    return <td className="tablemyy" >{item}</td>
+                                else {
+                                    if (arr3[index] === ind){
+                                        return <td className="tablemyy" id="victim__page">{item + " (victim)"}</td>
+                                    } else {
+                                        return <td className="tablemyy" >{item}</td>
+                                    }
+                                }
                             }
                         }
                     })}</tr>
@@ -194,11 +208,12 @@ function Visualization({frames,refstr,alggo,flagg}) {
                     <li>Frames are - {(frames.length >0)?frames:"nothing to show here"}</li>
                     <li>Reference String - {(refstr.length > 0)?refstr:"nothing to show here"}</li>
                     <li>Algorithm - {(alggo.length >0)?alggo:"nothing to show here"} </li>
+                    <li>No. of Page Hits - {(frames.length >0)?arr3.length-miss:"nothing to show here"} </li>
+                    <li>Hit rate percentage - {(alggo.length >0)?100-per(miss,arr2.length)+ "%":"NULL"} </li>
                     <li>No. of Page Faults - {(frames.length >0)?miss:"nothing to show here"} </li>
                     {/* <li>Page Faults percentage : {per(miss,arr2.length)}% <span class="extra"> It shows the percentage of total pages which resulted in page faults or page misses.</span> <br/></li>
                     <li>Hit rate percentage : {100-per(miss,arr2.length)}% <span class="extra"> It is the percentage of total pages which are in the memory when we access them i,e, the percentage of HIT pages.</span> <br/></li> */}
                     <li>Page Faults percentage - {(alggo.length >0)?per(miss,arr2.length) + "%":"NULL"} </li>
-                    <li>Hit rate percentage - {(alggo.length >0)?100-per(miss,arr2.length)+ "%":"NULL"} </li>
                 </div>
             </div>
             </>:<div className="initial__heading"><h3>Hey! Let's Visualize Some Page Replacement Algorithms! 

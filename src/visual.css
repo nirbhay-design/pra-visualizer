@@ -213,3 +213,9 @@ tr:not(:first-child){
     /* font-style:oblique; */
     font-family: 'Ubuntu Mono', monospace;
 }
+
+
+#victim__page{
+    background-color:purple;
+    color:white;
+}
