@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Petemoss&family=Roboto+Mono&family=Ubuntu:ital,wght@0,300;0,400;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Petemoss&family=Roboto+Mono&family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,300;0,400;1,400&display=swap');
 .algorithms__choice{
     display:flex;
     flex-direction:column;
@@ -26,7 +28,7 @@
     font-size: 18px;
     border:1px solid gray;
     /* font-weight: bold; */
-    font-family: "Ubuntu Mono"
+    font-family: 'Ubuntu Mono', monospace;
 }
 
 .name__algorithms{
@@ -39,7 +41,7 @@
     padding:8px 5px 8px 5px;
     margin:5px 5px 5px 5px;
     font-size: 18px;
-    font-family:"Ubuntu Mono";
+    font-family: 'Ubuntu Mono', monospace;
     background:none;
     border:1px solid blue;
     /* border-radius:10px; */
@@ -58,7 +60,7 @@
     padding:8px 0px 8px 0px;
     margin:15px 3vw 15px 3vw;
     font-size: 18px;
-    font-family:"Ubuntu Mono";
+    font-family: 'Ubuntu Mono', monospace;
     background:none;
     border:1px solid blue;
     /* border-radius:10px; */
@@ -72,3 +74,5 @@
     background-color:#0b46a3;
     color:#FFFFFF;
 }
+
+

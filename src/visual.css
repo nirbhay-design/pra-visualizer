@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Petemoss&family=Roboto+Mono&family=Ubuntu:ital,wght@0,300;0,400;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Petemoss&family=Roboto+Mono&family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,300;0,400;1,400&display=swap');
 .visualization__algorithms{
     display:flex;
     flex-direction:column;
@@ -7,7 +9,7 @@
 }
 
 .visualization__algorithms li{
-    font-family: "Roboto Condensed", sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 20px;
     color:#4285F4;
     font-weight:bold;
@@ -146,7 +148,7 @@ tr:not(:first-child){
     /* animation-duration: 3s; */
     animation-timing-function: linear;
     animation-fill-mode: forward;
-    margin-bottom:2px;
+    margin-bottom:5px;
 }
 .table__summary>h2{
     border:1px solid black;
@@ -182,3 +184,32 @@ tr:not(:first-child){
     margin:0 auto;
 }
 
+@media only screen and (max-width: 600px) {
+    .table__summary {
+      /* background-color: lightblue; */
+      width:100%;
+    }
+  }
+
+.algo__desc{
+    border:1px solid black;
+    border-radius:4px;
+    /* padding:3px; */
+    margin:0 auto;
+    margin-bottom:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.algoo__head{
+    text-align:center;
+    background-color:black;
+    color:white;
+}
+
+.algo__para{
+    padding:15px;
+    background-color:#FFFEF7;
+    /* font-style:oblique; */
+    font-family: 'Ubuntu Mono', monospace;
+}

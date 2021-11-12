@@ -99,11 +99,17 @@ function per(x,y){
 
 function Visualization({frames,refstr,alggo,flagg}) {
     const algodesc = {
-        "fifo":"This is the simplest page replacement algorithm. In this algorithm, the operating system keeps track of all pages in the memory in a queue, the oldest page is in the front of the queue. When a page needs to be replaced page in the front of the queue is selected for removal. ",
-        "lru":"In this algorithm page will be replaced which is least recently used. ",
-        "opr":"In this algorithm, pages are replaced which would not be used for the longest duration of time in the future. ",
-        "nru":"This algorithm removes a page at random from the lowest numbered non-empty class. Implicit in this algorithm is that it is better to remove a modified page that has not been referenced in atleast one clock tick than a clean page that is in heavy use.",
-        "sca":"In the Second Chance page replacement policy, the candidate pages for removal are considered in a round robin matter, and a page that has been accessed between consecutive considerations will not be replaced.",
+        FIFO:"This is the simplest page replacement algorithm. In this algorithm, the operating system keeps track of all pages in the memory in a queue, the oldest page is in the front of the queue. When a page needs to be replaced page in the front of the queue is selected for removal. ",
+        LRU:"In this algorithm page will be replaced which is least recently used. ",
+        OPR:"In this algorithm, pages are replaced which would not be used for the longest duration of time in the future. ",
+        NRU:"This algorithm removes a page at random from the lowest numbered non-empty class. Implicit in this algorithm is that it is better to remove a modified page that has not been referenced in atleast one clock tick than a clean page that is in heavy use.",
+        NFU:"this is not frequently used algorithm",
+        SCA:"In the Second Chance page replacement policy, the candidate pages for removal are considered in a round robin matter, and a page that has been accessed between consecutive considerations will not be replaced.",
+        Clk:"it uses clk",
+        RAN:"it selects victim page randomly",
+        LFU:"it select victim page which is least frequently used",
+        MFU:"it select victim page which is most frequently used",
+        Wait:"this is working set algorithm",
     } 
     var fun;
     if(alggo==="FIFO"){
@@ -139,6 +145,10 @@ function Visualization({frames,refstr,alggo,flagg}) {
         <div className="visualization__algorithms">
             {(flagg>=1)?<><center><h1> Visualization </h1></center>
             <br/>
+            <div className="algo__desc">
+                <h2 className="algoo__head">Have a Look !</h2>
+                <p className="algo__para">{algodesc[alggo]}</p>
+            </div>
             <table className="tablemy">
                 <tr className="tablemyyy"> 
                     {arr1[0].map((item,ind)=>{
