@@ -1,7 +1,7 @@
 import React from 'react'
 import './visual.css'
 //impprt {useTable} from 'reac'
-import {fifo,lru,opr,nru,random,lfu,mfu} from './page'
+import {fifo,lru,opr,nru,random,lfu,mfu,sca,mru} from './page'
 import Idlepage from './Idlepage'
 
 // function fifo(f,rs) {
@@ -102,7 +102,7 @@ function Visualization({frames,refstr,alggo,flagg}) {
         LRU:"In this algorithm page will be replaced which is least recently used before the current page. ",
         OPR:"In this algorithm, pages are replaced which would not be used for the longest duration of time in the future. ",
         NRU:"This algorithm removes a page at random from the lowest numbered non-empty class. Implicit in this algorithm is that it is better to remove a modified page that has not been referenced in atleast one clock tick than a clean page that is in heavy use.",
-        // NFU:"this is not frequently used algorithm",
+        MRU:"Most recently used algorithm selects that page as victim page which is most recently used in the past",
         SCA:"In the Second Chance page replacement policy, the candidate pages for removal are considered in a round robin matter, and a page that has been accessed between consecutive considerations will not be replaced.",
         Clk:"it uses clk",
         RAN:"it selects victim page randomly and replaces the page from that frame",
@@ -129,6 +129,10 @@ function Visualization({frames,refstr,alggo,flagg}) {
         fun = lfu;
     } else if(alggo === "MFU") {
         fun = mfu;
+    } else if(alggo === "SCA"){
+        fun = sca;
+    } else if (alggo === "MRU"){
+        fun = mru;
     } else {
         fun = fifo;
     }
@@ -171,10 +175,10 @@ function Visualization({frames,refstr,alggo,flagg}) {
                     return <tr className="tablemyy" style={{"animation-delay":index+"s"}}> {items.map((item,ind)=>{
                         if(ind === items.length-1){
                             if (item === "✓"){
-                                return <td className="tablemy__img1" >{item}</td>
+                                return <td className="tablemy__img1" >{item+`(${k[index]})`}</td>
                                 
                             } else {
-                                return <td className="tablemy__img2" >{item}</td>
+                                return <td className="tablemy__img2" >{item+`(${k[index]})`}</td>
                             }
                         } else{
                             if (item === -1){
