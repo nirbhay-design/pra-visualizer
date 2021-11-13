@@ -642,120 +642,226 @@ function mfu(f,rs){
     return [pg,ms,victim,miss];
 }
 
+function Find(x, arr, secondChance, f){
+    let i;
+    for(i = 0; i < f; i++)
+    {       
+        if(arr[i] == x){
+            secondChance[i] = true;
+            return true;
+        }
+    }
+    return false;   
+}
+      
+function Update(x, arr, secondChance, f, ptrr){
+    while(true){
+        if(!secondChance[ptrr]){
+            arr[ptrr] = x;
+            return [(ptrr+1)%f, arr];
+        }
+
+        secondChance[ptrr] = false;
+        ptrr = (ptrr + 1) % f;
+    }
+}
 
 function sca(f,rs){
-    const INT_MIN=-100000;
-    const INT_MAX=100000;
-    var que =[]; 
-    //console.log(INT_MIN);
+    let ptrr, i, l, x, miss;
+    let str = rs.split(' ');
+
+    l = str.length;
     var pg=[];
     var ms=[];
-    var victim = [];
-    var dict = {};
-    //const INT_MIN=-1000000;
-    //const INT_MAX=10000000;
-    var v=[]
+    var ptrs = [];
+    var v=[];
     for(let i=0;i<f;i++){
         v.push([]);
         for(let j=0;j<rs.length;j++){
             v[i].push(-1);
+
         }
     }
-    //console.log(v[0][0]);
-    //console.log(v[0].length);
-    var miss=0;
 
-    var cycle =0;
-    //console.log(rs.length);
-    for(let i=0;i<rs.length;i++){
-        var cur=[];
-        //console.log(i);
+    let victim = new Array(l);
+    victim.fill(0);
+    for(let s = 0;s<l;s++)
+        victim[s]=-1;
+    ptrr = miss = 0;
         
-        let page=rs[i];
-        //console.log(page);
-        if (dict[page] === undefined) {
-            dict[page] = 0;
-        }
-        let find=0;
-        let emp=0;
-        if(i!==0){
-            for(let j=0;j<f;j++){
-                v[j][i]=v[j][i-1];
+    let arr = new Array(f);
+    arr.fill(0);
+    arr[1] = 1;
+        
+    for(let s = 0;s<f;s++)
+        arr[s]=-1;
+
+    let secondChance = new Array(f);
+    secondChance.fill(false);
+
+    var tempArr = [];
+
+    let prevArray = new Array(f);
+    prevArray.fill(0);
+    for(let s = 0;s<f;s++)
+        prevArray[s]=-1;
+
+    for(i = 0; i < l; i++)
+    {
+        x = str[i];
+        
+        if(!Find(x,arr,secondChance,f)){
+            var tempp = Update(x,arr,secondChance,f,ptrr);
+            tempArr = tempp[1];
+            ptrr = tempp[0];
+
+            var nayaarray = [];
+            for(let j = 0; j < tempArr.length; j++){
+                nayaarray.push(tempArr[j]);
             }
-        }
-        // for(let j=0;j<f;j++){
-        //     process.stdout.write(v[j][i]+" ");
-        // }
-        // console.log("");
-        for (let j =0;j<f;j++) {
-           
-            if (v[j][i] !==-1 && v[j][i] === page) {
-                find =1;
-                dict[page] = 1;
-                break;
-            } else if (v[j][i] === -1){
-                emp = 1;
-            }
-        }
-        //console.log(emp,find);
-        if (find!==1) {
-            que.push(page);
-            // console.log(que);
+
+            pg.push(nayaarray);
+            ptrs.push(ptrr);
+
+            miss++;
             ms.push(0);
-            //console.log("0 ");
-            //process.stdout.write("0 ");
-            miss=miss+1;
-            if (emp===1) {
-                //console.log("cycle" +cycle);
-                victim.push(-1);
-                v[cycle][i] = page;
-                cycle = (cycle + 1)%f;
-                
-            } else {
-                var tmparr= [];
-                var imd = -1;
-                var mypg = que[0];
-                while (dict[mypg] === 1){
-                    dict[mypg] = 0;
-                    tmparr.push(mypg);
-                    que.shift();
-                    mypg = que[0];
-                }
-                que.shift();
-                while(tmparr.length > 0){
-                    let elem = tmparr.pop();
-                    que.unshift(elem);
-                }
-                // console.log(que);
-                for (var ii=0;ii<f;ii++){
-                    if(v[ii][i] === mypg){
-                        imd = ii;
-                    }
-                }
-                v[imd][i] = page;
-                victim.push(imd);
+            var ind;
+            for(let k = 0; k < f; k++){
+                if(prevArray[k] != nayaarray[k]){
+                     ind = k;
+                    break;
+                 }   
             }
-            //replace page
+            if(i >= f) victim[i] = ind;
         }
-        else {
-            dict[page] = 1;
-            victim.push(-1);
+
+        else{ 
             ms.push(1);
-            //console.log("1 ");
-            //process.stdout.write("1 ");
-        } 
-        for(let j=0;j<f;j++){
-            cur.push(v[j][i]);
+            var nayaarray = [];
+            for(let j = 0; j < arr.length; j++){
+                nayaarray.push(arr[j]);
+            }
+
+            prevArray = nayaarray;
+            pg.push(nayaarray);
         }
-        pg.push(cur);
+    }
+    return [pg,ms,victim,miss];
+}
+
+// function sca(f,rs){
+//     const INT_MIN=-100000;
+//     const INT_MAX=100000;
+//     var que =[]; 
+//     //console.log(INT_MIN);
+//     var pg=[];
+//     var ms=[];
+//     var victim = [];
+//     var dict = {};
+//     //const INT_MIN=-1000000;
+//     //const INT_MAX=10000000;
+//     var v=[]
+//     for(let i=0;i<f;i++){
+//         v.push([]);
+//         for(let j=0;j<rs.length;j++){
+//             v[i].push(-1);
+//         }
+//     }
+//     //console.log(v[0][0]);
+//     //console.log(v[0].length);
+//     var miss=0;
+
+//     var cycle =0;
+//     //console.log(rs.length);
+//     for(let i=0;i<rs.length;i++){
+//         var cur=[];
+//         //console.log(i);
+        
+//         let page=rs[i];
+//         //console.log(page);
+//         if (dict[page] === undefined) {
+//             dict[page] = 0;
+//         }
+//         let find=0;
+//         let emp=0;
+//         if(i!==0){
+//             for(let j=0;j<f;j++){
+//                 v[j][i]=v[j][i-1];
+//             }
+//         }
+//         // for(let j=0;j<f;j++){
+//         //     process.stdout.write(v[j][i]+" ");
+//         // }
+//         // console.log("");
+//         for (let j =0;j<f;j++) {
+           
+//             if (v[j][i] !==-1 && v[j][i] === page) {
+//                 find =1;
+//                 dict[page] = 1;
+//                 break;
+//             } else if (v[j][i] === -1){
+//                 emp = 1;
+//             }
+//         }
+//         //console.log(emp,find);
+//         if (find!==1) {
+//             que.push(page);
+//             // console.log(que);
+//             ms.push(0);
+//             //console.log("0 ");
+//             //process.stdout.write("0 ");
+//             miss=miss+1;
+//             if (emp===1) {
+//                 //console.log("cycle" +cycle);
+//                 victim.push(-1);
+//                 v[cycle][i] = page;
+//                 cycle = (cycle + 1)%f;
+                
+//             } else {
+//                 var tmparr= [];
+//                 var imd = -1;
+//                 var mypg = que[0];
+//                 while (dict[mypg] === 1){
+//                     dict[mypg] = 0;
+//                     tmparr.push(mypg);
+//                     que.shift();
+//                     mypg = que[0];
+//                 }
+//                 que.shift();
+//                 while(tmparr.length > 0){
+//                     let elem = tmparr.pop();
+//                     que.unshift(elem);
+//                 }
+//                 // console.log(que);
+//                 for (var ii=0;ii<f;ii++){
+//                     if(v[ii][i] === mypg){
+//                         imd = ii;
+//                     }
+//                 }
+//                 v[imd][i] = page;
+//                 victim.push(imd);
+//             }
+//             //replace page
+//         }
+//         else {
+//             dict[page] = 1;
+//             victim.push(-1);
+//             ms.push(1);
+//             //console.log("1 ");
+//             //process.stdout.write("1 ");
+//         } 
+//         for(let j=0;j<f;j++){
+//             cur.push(v[j][i]);
+//         }
+//         pg.push(cur);
        
         
       
-    }
-    // console.log(pg);
-    // console.log(victim);
-    return [pg,ms,victim,miss];
-}
+//     }
+//     // console.log(pg);
+//     // console.log(victim);
+//     return [pg,ms,victim,miss];
+// }
 
 
 function mru(f,rs){
