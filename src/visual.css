@@ -97,7 +97,7 @@ tr:not(:first-child){
 
 .initial__heading{
     margin-left:8vw;
-    margin-top:41vh;
+    margin-top:30vh;
     animation-name:hd_anim;
     animation-timing-function:linear;
     animation-duration:3s;
@@ -218,4 +218,10 @@ tr:not(:first-child){
 #victim__page{
     background-color:purple;
     color:white;
+}
+
+@media only screen and (max-width: 600px) {
+    .initial__heading{
+        margin-top:18vh;
+    }
 }
