@@ -209,7 +209,7 @@ function Visualization({frames,refstr,alggo,flagg}) {
                     <li>Reference String - {(refstr.length > 0)?refstr:"nothing to show here"}</li>
                     <li>Algorithm - {(alggo.length >0)?alggo:"nothing to show here"} </li>
                     <li>No. of Page Hits - {(frames.length >0)?arr3.length-miss:"nothing to show here"} </li>
-                    <li>Hit rate percentage - {(alggo.length >0)?100-per(miss,arr2.length)+ "%":"NULL"} </li>
+                    <li>Hit rate percentage - {(alggo.length >0)?(100-per(miss,arr2.length)).toFixed(2)+ "%":"NULL"} </li>
                     <li>No. of Page Faults - {(frames.length >0)?miss:"nothing to show here"} </li>
                     {/* <li>Page Faults percentage : {per(miss,arr2.length)}% <span class="extra"> It shows the percentage of total pages which resulted in page faults or page misses.</span> <br/></li>
                     <li>Hit rate percentage : {100-per(miss,arr2.length)}% <span class="extra"> It is the percentage of total pages which are in the memory when we access them i,e, the percentage of HIT pages.</span> <br/></li> */}
