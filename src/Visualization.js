@@ -1,7 +1,7 @@
 import React from 'react'
 import './visual.css'
 //impprt {useTable} from 'reac'
-import {fifo,lru,opr,nru,random,lfu,mfu,sca,mru} from './page'
+import {fifo,lru,opr,nru,random,lfu,mfu,sca,mru,wset} from './page'
 import Idlepage from './Idlepage'
 
 // function fifo(f,rs) {
@@ -133,6 +133,10 @@ function Visualization({frames,refstr,alggo,flagg}) {
         fun = sca;
     } else if (alggo === "MRU"){
         fun = mru;
+    }
+    else if(alggo==="Wait"){
+        fun=wset;
+
     } else {
         fun = fifo;
     }

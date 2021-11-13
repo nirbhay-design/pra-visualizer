@@ -860,8 +860,107 @@ function mru(f,rs){
     // console.log(victim);
     return [pg,ms,victim,miss];
 }
+function wset(f,rs){
+    var pg=[];
+    var ms=[];
+    var victim = [];
+    var v=[]
+    for(let i=0;i<f;i++){
+        v.push([]);
+        for(let j=0;j<rs.length;j++){
+            v[i].push(-1);
 
-export {fifo,lru,opr,nru,random,lfu,mfu,sca,mru};
+        }
+    }
+    var miss=0;
+    var cycle =0;
+    for (let i =0;i<rs.length;i++) {
+        let imd =-1;
+        var cur=[];
+        let page = rs[i];
+        let find=false;
+        let emp = false;
+        if (i !== 0) {
+            for (let j =0;j<f;j++) {
+                v[j][i] = v[j][i-1];
+            }
+        }
+        for (let j =0;j<f;j++) {
+            if (v[j][i] !==-1 && v[j][i] === page) {
+                find =true;
+                break;
+            } else if (v[j][i] === -1){
+                imd=j;
+                emp = true;
+            }
+        }
+        if(find!==true){
+            miss++;
+            ms.push(0);
+            if (emp===true) {
+                //console.log("cycle" +cycle);
+                victim.push(-1);
+                if(imd!=-1){
+                v[imd][i] = page;
+                cycle = (cycle + 1)%f;
+                }
+                
+                
+            } else {
+                const st=new Set();
+               for(let j=i;j>i-f;j--){
+                   st.add(rs[j]);
+
+               }
+               var flag=0;
+               for(let j=0;j<f;j++){
+                   if(!st.has(v[j][i])){
+                       
+                       if(flag===0){
+                        victim.push(j);
+                           flag=1;
+                       v[j][i]=page;
+                       }
+                       else{
+                           v[j][i]=-1;
+                       }
+                       //break;
+
+                   }
+               }
+            }
+
+        }
+        else{
+            victim.push(-1);
+            ms.push(1);
+            const st1=new Set();
+            for(let j=i;j>i-f;j--){
+                st1.add(rs[j]);
+
+            }
+            for(let j=0;j<f;j++){
+                if(!st1.has(v[j][i])){
+                    v[j][i]=-1;
+                }
+
+            }
+
+        }
+        for(let j=0;j<f;j++){
+            cur.push(v[j][i]);
+
+        }
+        pg.push(cur);
+    }
+        return [pg,ms,victim,miss];
+
+
+
+
+}
+
+export {fifo,lru,opr,nru,random,lfu,mfu,sca,mru,wset};
 // let g=lru(2,[1,2,2,4,5,5,3,2,1]);
 // console.log(g);
 // g=sca(3,[2,3,2,1,5,2,4,5,3,2,3,5]);
