@@ -2,7 +2,11 @@
   text-align: center;
 }
 
+body{
+  background-color:#0063B2FF;
+  /* background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ9tD6DnDpPKVgbpRFvUw9FqCs2aB4K-S2IQ&usqp=CAU"); */
 
+}
 
 .my__div{
   /* background-image:url("https://images.unsplash.com/photo-1591951425600-d09958978584?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGFnZXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"); */

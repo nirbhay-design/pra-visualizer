@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Petemoss&family=Roboto+Mono&family=Ubuntu:ital,wght@0,300;0,400;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Petemoss&family=Roboto+Mono&family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,300;0,400;1,400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Inter:wght@300&family=Petemoss&family=Roboto+Mono&family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,300;0,400;1,400&display=swap');
+
+
 .visualization__algorithms{
     display:flex;
     flex-direction:column;
@@ -206,12 +210,13 @@ tr:not(:first-child){
     background-color:black;
     color:white;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Inter:wght@300&family=Petemoss&family=Roboto+Mono&family=Ubuntu+Mono&family=Ubuntu:ital,wght@0,300;0,400;1,400&display=swap');
 .algo__para{
     padding:15px;
     background-color:#FFFEF7;
     /* font-style:oblique; */
-    font-family: 'Ubuntu Mono', monospace;
+    /* font-family: 'Ubuntu Mono', monospace; */
+    font-family: 'Inconsolata', monospace;
 }
 
 
