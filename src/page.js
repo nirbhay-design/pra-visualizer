@@ -434,7 +434,7 @@ function nru(f,rs){
             }
             pg.push(cur);
         }
-        console.log(victim);
+        // console.log(victim);
         return [pg,ms,victim,miss];
 
 
@@ -637,7 +637,7 @@ function mfu(f,rs){
         
       
     }
-    console.log(pg);
+    // console.log(pg);
     // console.log(victim);
     return [pg,ms,victim,miss];
 }
@@ -963,7 +963,7 @@ function mru(f,rs){
         
       
     }
-    console.log(pg);
+    // console.log(pg);
     // console.log(victim);
     return [pg,ms,victim,miss];
 }
@@ -1066,6 +1066,23 @@ function wset(f,rs){
 
 
 }
+
+// var namealgos = ["fifo","lru","opr","nru","random","lfu","mfu","sca","mru","wset"];
+// const myalgos= [fifo,lru,opr,nru,random,lfu,mfu,sca,mru,wset];
+// // const myk=convert(refstr);
+// var frames = 3;
+// // var refstr = [1,2,3,4,2,3,4,5,5,6,3,2,1];
+// var refstr = [1, 2, 4, 3, 2, 3, 4];
+// var data = [];
+// for (var i = 0;i<myalgos.length;i++){
+//     const arre = myalgos[i](frames,refstr);
+//     data = [...data,{
+//         name:namealgos[i],
+//         miss:arre[3]
+//     }];
+//     // console.log("arre[3] is",arre[3]);
+// }
+// console.log("my data" , data);
 
 export {fifo,lru,opr,nru,random,lfu,mfu,sca,mru,wset};
 // let g=lru(2,[1,2,2,4,5,5,3,2,1]);

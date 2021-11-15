@@ -3,80 +3,10 @@ import './visual.css'
 //impprt {useTable} from 'reac'
 import {fifo,lru,opr,nru,random,lfu,mfu,sca,mru,wset} from './page'
 import Idlepage from './Idlepage'
+import CompareAlgorithms from './CompareAlgorithms'
+// import {useState,useEffect} from 'react'
 
-// function fifo(f,rs) {
-//     var pg=[];
-//     var ms=[];
-//     //queue<int> q;
-//     var q=[];
-//     //vector<vector<int>> v(f,vector<int> (rs.size(),-1));
-//     //const INT_MIN=-1000000;
-//     //const INT_MAX=10000000;
-    
-//     //console.log(obj.length);
-//     var v=[]
-//     for(let i=0;i<f;i++){
-//         v.push([]);
-//         for(let j=0;j<rs.length;j++){
-//             v[i].push(-1);
 
-//         }
-//     }
-   
-//     let miss =0;
-//     let cycle = 0;
-//     for (let i =0;i<rs.length;i++) {
-//         var cur=[];
-//         let page = rs[i];
-//         let find=false;
-//         let emp = false;
-//         if (i !== 0) {
-//             for (let j =0;j<f;j++) {
-//                 v[j][i] = v[j][i-1];
-//             }
-//         }
-        
-        
-//         for (let j =0;j<f;j++) {
-//             if (v[j][i] !==-1 && v[j][i] === page) {
-//                 find =true;
-//                 break;
-//             } else if (v[j][i] === -1){
-//                 emp = true;
-//             }
-//         }
-//         if (!find) {
-//             q.push(page);
-//             ms.push(0);
-//             //process.stdout.write("0 ");
-//             miss++;
-//             if (emp) {
-//                 v[cycle][i] = page;
-//                 cycle = (cycle + 1)%f;
-//             } else {
-//                 let fif = q[0];
-//                 q.shift();
-//                 for (let ii =0;ii<f;ii++) {
-//                     if (v[ii][i] === fif) {
-//                         v[ii][i] = page; 
-//                         break;
-//                     }
-//                 }
-//             }
-//             //replace page
-//         }
-//         else {
-//             ms.push(1);
-//             //process.stdout.write("1 ");
-//         }
-//         for(let j=0;j<f;j++){
-//             cur.push(v[j][i]);
-//         }
-//         pg.push(cur); 
-//     }
-//     return [pg,ms];
-
-// }
 
 function convert(refstr){
     refstr=refstr.trim();
@@ -96,7 +26,10 @@ function per(x,y){
     return Math.round(b*100)/100;
 }
 
-function Visualization({frames,refstr,alggo,flagg}) {
+
+function Visualization({frames,refstr,alggo,flagg,mydata}) {
+    
+    
     const algodesc = {
         FIFO:"This is the simplest page replacement algorithm. In this algorithm, the operating system keeps track of all pages in the memory in a queue, the oldest page is in the front of the queue. When a page needs to be replaced page in the front of the queue is selected for removal. ",
         LRU:"In this algorithm page will be replaced which is least recently used before the current page. ",
@@ -148,7 +81,7 @@ function Visualization({frames,refstr,alggo,flagg}) {
     var miss=s1[3];
     for(let i=0;i<arr1.length;i++){
         if(arr2[i]===1)
-        arr1[i].push("✓");
+            arr1[i].push("✓");
         else arr1[i].push("✗");
 
     }
@@ -224,13 +157,13 @@ function Visualization({frames,refstr,alggo,flagg}) {
                     <li>Page Faults percentage - {(alggo.length >0)?per(miss,arr2.length) + "%":"NULL"} </li>
                 </div>
             </div>
-            </>:<div className="initial__heading">
+            </>:(flagg===0)?<div className="initial__heading">
                 <Idlepage/>
                 <h3>Hey! Let's Visualize Some Page Replacement Algorithms! </h3>
                 <h3>Choose Your Favourite Algorithm For Visualization 😊</h3>
 
                 <h4>Want to read more about it ? <a href="https://www.geeksforgeeks.org/page-replacement-algorithms-in-operating-systems/">Visit</a> </h4>
-                </div>}
+                </div>:<CompareAlgorithms raiseflag={flagg} data={mydata}/>}
             {/* </div> */}
            
         </div>
@@ -238,3 +171,78 @@ function Visualization({frames,refstr,alggo,flagg}) {
 }
 
 export default Visualization
+
+
+// function fifo(f,rs) {
+//     var pg=[];
+//     var ms=[];
+//     //queue<int> q;
+//     var q=[];
+//     //vector<vector<int>> v(f,vector<int> (rs.size(),-1));
+//     //const INT_MIN=-1000000;
+//     //const INT_MAX=10000000;
+    
+//     //console.log(obj.length);
+//     var v=[]
+//     for(let i=0;i<f;i++){
+//         v.push([]);
+//         for(let j=0;j<rs.length;j++){
+//             v[i].push(-1);
+
+//         }
+//     }
+   
+//     let miss =0;
+//     let cycle = 0;
+//     for (let i =0;i<rs.length;i++) {
+//         var cur=[];
+//         let page = rs[i];
+//         let find=false;
+//         let emp = false;
+//         if (i !== 0) {
+//             for (let j =0;j<f;j++) {
+//                 v[j][i] = v[j][i-1];
+//             }
+//         }
+        
+        
+//         for (let j =0;j<f;j++) {
+//             if (v[j][i] !==-1 && v[j][i] === page) {
+//                 find =true;
+//                 break;
+//             } else if (v[j][i] === -1){
+//                 emp = true;
+//             }
+//         }
+//         if (!find) {
+//             q.push(page);
+//             ms.push(0);
+//             //process.stdout.write("0 ");
+//             miss++;
+//             if (emp) {
+//                 v[cycle][i] = page;
+//                 cycle = (cycle + 1)%f;
+//             } else {
+//                 let fif = q[0];
+//                 q.shift();
+//                 for (let ii =0;ii<f;ii++) {
+//                     if (v[ii][i] === fif) {
+//                         v[ii][i] = page; 
+//                         break;
+//                     }
+//                 }
+//             }
+//             //replace page
+//         }
+//         else {
+//             ms.push(1);
+//             //process.stdout.write("1 ");
+//         }
+//         for(let j=0;j<f;j++){
+//             cur.push(v[j][i]);
+//         }
+//         pg.push(cur); 
+//     }
+//     return [pg,ms];
+
+// }

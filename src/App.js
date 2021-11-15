@@ -8,10 +8,11 @@ function App() {
   const [myrefstr,Setmrefstr] = useState("");
   const [algo,Setmalgo] = useState("");
   const [flag,Setflag] = useState(0);
+  const [data,Setdata] = useState([]);
   return (
     <div className="my__div">
-      <Algorithms Setmyframes={Setmframes} Setmyrefstr={Setmrefstr} Setmyalgo={Setmalgo} myflag={flag} setflag = {Setflag}/>
-      <Visualization frames={myframes} refstr={myrefstr} alggo={algo} flagg={flag}/>
+      <Algorithms Setmyframes={Setmframes} Setmyrefstr={Setmrefstr} Setmyalgo={Setmalgo} myflag={flag} setflag = {Setflag} daata={data} setdata = {Setdata}/>
+      <Visualization frames={myframes} refstr={myrefstr} alggo={algo} flagg={flag} mydata={data}/>
     </div>
   );
 }export default App;

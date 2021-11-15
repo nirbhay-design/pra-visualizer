@@ -1,8 +1,22 @@
 import React from 'react'
 import './algo.css'
 import {useState} from 'react'
+import {fifo,lru,opr,nru,random,lfu,mfu,sca,mru,wset} from './page'
+function convert(refstr){
+    refstr=refstr.trim();
+    var arr=refstr.split(" ");
+    var k=[];
+    for(let i=0;i<arr.length;i++){
+        if(arr[i]!=="" && arr[i]!==" "){
+        k.push(Number(arr[i]));
+        }
+    }
+    return k;
 
-function Algorithms({Setmyframes,Setmyrefstr,Setmyalgo,myflag,setflag}) {
+}
+
+
+function Algorithms({Setmyframes,Setmyrefstr,Setmyalgo,myflag,setflag,daata,setdata}) {
     const [frames,Setframes] = useState("");
     const [refstr,Setrefstr] = useState("");
     const visualizebutton = (e,name_algo)=>{
@@ -10,11 +24,12 @@ function Algorithms({Setmyframes,Setmyrefstr,Setmyalgo,myflag,setflag}) {
         Setmyframes(frames);
         Setmyrefstr(refstr);
         Setmyalgo(name_algo);
-        console.log(name_algo);
-        console.log(refstr); 
-        console.log(frames);
+        // console.log(name_algo);
+        // console.log(refstr); 
+        // console.log(frames);
         if(frames !== "" && refstr !== ""){
-            setflag(myflag+1);
+            // setflag(0);
+            setflag(((myflag<0)?0:myflag)+1);
         }
         // Setrefstr("");
         // Setframes("");
@@ -24,7 +39,29 @@ function Algorithms({Setmyframes,Setmyrefstr,Setmyalgo,myflag,setflag}) {
         setflag(0);
         Setframes("");
         Setrefstr("");
+        setdata([]);
 
+    }
+    const Resett = (e)=>{
+        e.preventDefault();
+        Setmyframes(frames);
+        Setmyrefstr(refstr);
+        if(frames !== "" && refstr !== ""){    
+            var namealgos = ["fifo","lru","opr","nru","random","lfu","mfu","sca","mru","wset"];
+            const myalgos= [fifo,lru,opr,nru,random,lfu,mfu,sca,mru,wset];
+            const myk=convert(refstr);
+            var mytempdata = []
+            for (var i = 0;i<myalgos.length;i++){
+                const arre = myalgos[i](frames,myk);
+                const obj = {name:namealgos[i],miss:arre[3]};
+                mytempdata.push(obj);
+            }
+            setdata(mytempdata);
+            // console.log(daata);
+            setflag(-1);
+        } else {
+            setflag(-2);
+        }
     }
     
     return (
@@ -45,6 +82,7 @@ function Algorithms({Setmyframes,Setmyrefstr,Setmyalgo,myflag,setflag}) {
                 <button className="but" id = "b6" onClick={(e)=>{visualizebutton(e,"SCA")}}>Second Chance Algorithm</button>
                 {/* <button className="but" id = "b7" onClick={(e)=>{visualizebutton(e,"Clk")}}>Clock Page Replacement Algorithm</button> */}
                 <button className="but" id = "b11" onClick={(e)=>{visualizebutton(e,"Wait")}}>Working Set Page Replacement Algorithm</button>
+                <button className="but2" onClick={(e)=>{Resett(e)}}>Compare Algorithms</button>
                 <button className="but1" onClick={(e)=>{Reset(e)}}>Reset</button>
             </div>
             <div className="description__algorithms">
