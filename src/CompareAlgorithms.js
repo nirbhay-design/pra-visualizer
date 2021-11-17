@@ -1,6 +1,6 @@
 import React from 'react'
 import './compalgo.css'
-import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid} from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid,ResponsiveContainer} from 'recharts';
 // import {useState} from 'react'
 
 
@@ -23,14 +23,28 @@ function CompareAlgorithms({raiseflag,data}) {
         <div className = "compare__algos">
            { (raiseflag===-1)?
            <div className = "display__graphs">
+               
                <h1>Algorithm Vs PageFaults</h1>
-               <BarChart width={600} height={300} data={data}>
-                    <XAxis dataKey="name" stroke="#000000" />
-                    <YAxis />
-                    <Tooltip />
-                    <CartesianGrid stroke="#ccc" />
-                    <Bar dataKey="miss" fill="#0045a5" barSize={30} />
-                </BarChart>
+               <ResponsiveContainer width="100%" height={300}>
+                <BarChart className="bar__charts" width={600} height={300} data={data}>
+                        <XAxis dataKey="name" minTickGap = {0} stroke="#000000" />
+                        <YAxis />
+                        <Tooltip />
+                        <CartesianGrid stroke="#ccc" />
+                        {/* 5F4B8BFF E69A8DFF*/}
+                        <Bar dataKey="miss" fill="#00539CFF" barSize={30} />
+                    </BarChart>
+                </ResponsiveContainer>
+               <h1>Algorithm Vs Page Hits</h1>
+               <ResponsiveContainer width="100%" height={300}>
+                    <BarChart className="bar__charts" width={600} height={300} data={data}>
+                        <XAxis dataKey="name" stroke="#000000" />
+                        <YAxis />
+                        <Tooltip />
+                        <CartesianGrid stroke="#ccc" />
+                        <Bar dataKey="hit" fill="#EEA47FFF" barSize={30} />
+                    </BarChart>
+                </ResponsiveContainer>
            </div>
            :
            <div className="confuse__monkey">

@@ -90,7 +90,8 @@ function Visualization({frames,refstr,alggo,flagg,mydata}) {
     //var m=Number(frames);
     return (
         <div className="visualization__algorithms">
-            {(flagg>=1)?<><center><h1> Visualization </h1></center>
+            {(flagg>=1)?<>
+            <center><h1> Visualization </h1></center>
             <br/>
             <div className="algo__desc">
                 <h2 className="algoo__head">Have a Look !</h2>

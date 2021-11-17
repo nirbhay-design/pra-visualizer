@@ -47,13 +47,13 @@ function Algorithms({Setmyframes,Setmyrefstr,Setmyalgo,myflag,setflag,daata,setd
         Setmyframes(frames);
         Setmyrefstr(refstr);
         if(frames !== "" && refstr !== ""){    
-            var namealgos = ["fifo","lru","opr","nru","random","lfu","mfu","sca","mru","wset"];
+            var namealgos = ["fifo","lru","opr","nru","ran","lfu","mfu","sca","mru","wset"];
             const myalgos= [fifo,lru,opr,nru,random,lfu,mfu,sca,mru,wset];
             const myk=convert(refstr);
             var mytempdata = []
             for (var i = 0;i<myalgos.length;i++){
                 const arre = myalgos[i](frames,myk);
-                const obj = {name:namealgos[i],miss:arre[3]};
+                const obj = {name:namealgos[i],miss:arre[3],hit:myk.length-arre[3]};
                 mytempdata.push(obj);
             }
             setdata(mytempdata);
