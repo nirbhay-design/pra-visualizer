@@ -28,20 +28,32 @@ function per(x,y){
 
 
 function Visualization({frames,refstr,alggo,flagg,mydata}) {
-    
+    const links= {
+        FIFO:"https://www.geeksforgeeks.org/page-replacement-algorithms-in-operating-systems/",
+        LRU:"https://www.geeksforgeeks.org/page-replacement-algorithms-in-operating-systems/",
+        OPR:"https://www.geeksforgeeks.org/page-replacement-algorithms-in-operating-systems/",
+        NRU:"https://www.geeksforgeeks.org/not-recently-used-nru-page-replacement-algorithm/",
+        MRU:"https://www.youtube.com/watch?v=H3BU_Do_l-Q",
+        SCA:"https://www.geeksforgeeks.org/second-chance-or-clock-page-replacement-policy/",
+        Clk:"it uses clk",
+        RAN:"https://en.wikipedia.org/wiki/Page_replacement_algorithm",
+        LFU:"https://en.wikipedia.org/wiki/Least_frequently_used",
+        MFU:"https://prepinsta.com/operating-systems/page-replacement-algorithms/",
+        Wait:"https://www.informit.com/articles/article.aspx?p=25260&seqNum=9#:~:text=In%20the%20purest%20form%20of,page%20containing%20the%20first%20instruction.",
+    };
     
     const algodesc = {
         FIFO:"This is the simplest page replacement algorithm. In this algorithm, the operating system keeps track of all pages in the memory in a queue, the oldest page is in the front of the queue. When a page needs to be replaced page in the front of the queue is selected for removal. ",
-        LRU:"In this algorithm page will be replaced which is least recently used before the current page. ",
+        LRU:"In this algorithm page will be replaced which is least recently used in the past, before the current page. ",
         OPR:"In this algorithm, pages are replaced which would not be used for the longest duration of time in the future. ",
-        NRU:"This algorithm removes a page at random from the lowest numbered non-empty class. Implicit in this algorithm is that it is better to remove a modified page that has not been referenced in atleast one clock tick than a clean page that is in heavy use.",
-        MRU:"Most recently used algorithm selects that page as victim page which is most recently used in the past",
-        SCA:"In the Second Chance page replacement policy, the candidate pages for removal are considered in a round robin matter, and a page that has been accessed between consecutive considerations will not be replaced.",
+        NRU:"This algorithm removes a page at random from the lowest numbered non-empty class. Implicit in this algorithm is that it is better to remove a modified page that has not been referenced in atleast one clock tick than a clean page that is in heavy use. ",
+        MRU:"Most recently used algorithm selects that page as victim page which is most recently used in the past. ",
+        SCA:"In the Second Chance page replacement policy, we provide a second chance to the page using reference bit once a page hit is there we make the ref bit of of that page as 1 if it is 0, and again if this page needs to be replaced then we provide it a second chance by making it ref bit as 0 and replace some other page. ",
         Clk:"it uses clk",
-        RAN:"it selects victim page randomly and replaces the page from that frame",
-        LFU:"it select victim page which is least frequently used which means it keeps track of the frequency of pages so far and on page fault it replaces the page having least frequency so far",
-        MFU:"it select victim page which is most frequently used which means it keeps track of the frequency of pages so far and on page fault it replaces the page having maximum frequency so far",
-        Wait:"this is working set algorithm",
+        RAN:"it selects victim page randomly and replaces the page from that frame. ",
+        LFU:"it select victim page which is least frequently used which means it keeps track of the frequency of pages so far and on page fault it replaces the page having least frequency so far. ",
+        MFU:"it select victim page which is most frequently used which means it keeps track of the frequency of pages so far and on page fault it replaces the page having maximum frequency so far. ",
+        Wait:"this is working set algorithm. ",
     } 
     var fun;
     if(alggo==="FIFO"){
@@ -91,11 +103,11 @@ function Visualization({frames,refstr,alggo,flagg,mydata}) {
     return (
         <div className="visualization__algorithms">
             {(flagg>=1)?<>
-            <center><h1> Visualization </h1></center>
+            <center><h2 style={{"text-decoration":"underline"}}> Page Replacement Algorithms </h2></center>
             <br/>
             <div className="algo__desc">
                 <h2 className="algoo__head">Have a Look !</h2>
-                <p className="algo__para">{algodesc[alggo]}</p>
+                <p className="algo__para">{algodesc[alggo]} Read more about it here: <a href={links[alggo]} style={{"color":"blue"}}>Visit</a></p>
             </div>
             <table className="tablemy">
                 <tr className="tablemyyy"> 
