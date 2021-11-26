@@ -821,6 +821,7 @@ function sca(f,rs){
             } else {
                 var tmparr= [];
                 var imd = -1;
+                var mypg1 = que[0];
                 var mypg = que[0];
                 while (dict[mypg] === 1){
                     dict[mypg] = 0;
@@ -828,10 +829,19 @@ function sca(f,rs){
                     que.shift();
                     mypg = que[0];
                 }
-                que.shift();
-                while(tmparr.length > 0){
-                    let elem = tmparr.pop();
-                    que.unshift(elem);
+                if (tmparr.length >= f) {
+                    mypg = mypg1;
+                    while(tmparr.length > 0){
+                        let elem = tmparr.pop();
+                        que.unshift(elem);
+                    }
+                    que.shift();
+                } else {
+                    que.shift();
+                    while(tmparr.length > 0){
+                        let elem = tmparr.pop();
+                        que.unshift(elem);
+                    }
                 }
                 // console.log(que);
                 for (var ii=0;ii<f;ii++){
