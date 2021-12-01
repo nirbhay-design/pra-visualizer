@@ -72,7 +72,7 @@ function Algorithms({Setmyframes,Setmyrefstr,Setmyalgo,myflag,setflag,daata,setd
             </div>
             <div className="name__algorithms">
                 <button className="but" id = "b1" onClick={(e)=>{visualizebutton(e,"FIFO")}}>First In First Out Algorithm</button>
-                <button className="but" id = "b2" onClick={(e)=>{visualizebutton(e,"LRU")}}>Least Recetntly Used Algorithm</button>
+                <button className="but" id = "b2" onClick={(e)=>{visualizebutton(e,"LRU")}}>Least Recently Used Algorithm</button>
                 <button className="but" id = "b5" onClick={(e)=>{visualizebutton(e,"MRU")}}>Most Recently Used Algorithm</button>
                 <button className="but" id = "b3" onClick={(e)=>{visualizebutton(e,"OPR")}}>Optimal Page Replacement Algorithm</button>
                 <button className="but" id = "b4" onClick={(e)=>{visualizebutton(e,"NRU")}}>Not Recently Used Algorithm</button>

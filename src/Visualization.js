@@ -53,7 +53,7 @@ function Visualization({frames,refstr,alggo,flagg,mydata}) {
         RAN:"it selects victim page randomly and replaces the page from that frame. ",
         LFU:"it select victim page which is least frequently used which means it keeps track of the frequency of pages so far and on page fault it replaces the page having least frequency so far. ",
         MFU:"it select victim page which is most frequently used which means it keeps track of the frequency of pages so far and on page fault it replaces the page having maximum frequency so far. ",
-        Wait:"this is working set algorithm. ",
+        Wait:"The \"working set\" is short hand for \"parts of memory that the current algorithm is using\" and is determined by which parts of memory the CPU just happens to access. so in working set algorithm we maintain a working set of last few page numbers and accordingly we replace the pages. So we can also say that this algorithm is based on the principle of locality.  ",
     } 
     var fun;
     if(alggo==="FIFO"){
